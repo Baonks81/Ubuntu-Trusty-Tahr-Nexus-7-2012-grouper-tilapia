@@ -1210,7 +1210,41 @@ Comment=Default Cursor Theme
 
 Inherits=capitaine-cursors
 
+Ubuntu default governor:
+conservative governor:
 
+down_threshold=20
+freq_step=5
+ignore_nice_load=0
+sampling_down_factor=1
+sampling_rate=300000
+sampling_rate_min=200000
+up_threshold=80
+
+ondemand governor:
+
+ignore_nice_load=0
+io_is_busy=0
+powersave_bias=0
+sampling_down_factor=1
+sampling_rate=300000
+sampling_rate_min=30000
+up_threshold=95
+
+interactive governor:
+
+above_hispeed_delay=20000
+boost=0
+boost_factor=0
+go_hispeed_load=85
+go_maxspeed_load=85
+hispeed_freq=1300000
+input_boost=0
+io_is_busy=0
+max_boost=0
+min_sample_time=30000
+sustain_load=0
+timer_rate=20000
 
 [MEDIA=youtube]ujEjDxSvfsk[/MEDIA]
 
