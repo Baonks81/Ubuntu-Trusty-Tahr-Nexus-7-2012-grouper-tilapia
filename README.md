@@ -16,6 +16,34 @@ Nếu không muốn chạy Linux thuần thì có thể chạy dualboot Android 
 
 
 
+Nexus 7 2012
+
+TWRP MultiROM grouper full package(wifi)
+
+https://www.mediafire.com/file/g9dcifft7fv2vfy/grouper.zip/file
+
+
+
+TWRP MultiROM tilapia full package(3G)
+
+https://www.mediafire.com/file/ow77ex66la4rgfr/tilapia.zip/file
+
+
+
+Nexus 7 2013
+
+TWRP MultiROM deb full package(wifi)
+
+https://www.mediafire.com/file/147sntaakt5xk5s/deb.zip/file
+
+
+
+TWRP MultiROM flo full package(3G)
+
+https://www.mediafire.com/file/z0rdlu2cryd3h84/flo.zip/file
+
+
+
 TWRP_multirom_grouper_20160210.img
 
 http://www.mediafire.com/file/jjd0hgtdf4beeji/TWRP_multirom_grouper_20160210.img/file
@@ -43,6 +71,8 @@ http://www.mediafire.com/file/r7kk8mono1th619/MultiROM_Manager_v1.188_apkpure.co
 MultiROM core
 
 http://www.mediafire.com/file/bsmfixl6rq1j0cn/multirom_v10_n7-signed.zip/file
+
+
 
 http://www.mediafire.com/file/3uqryjrmyc40jba/multirom-20160207-v33-grouper.zip/file
 
@@ -280,7 +310,13 @@ $ sudo apt-get -f install
 
 
 
-Quản lý vm trong sysctl, bổ sung 1 ít thông số của Ktweak trên xda-developers
+Quản lý vm trong sysctl, bổ sung 1 ít thông số của Ktweak trên github của tytydraco(xda-developers)
+
+
+
+Tham khảo:
+
+https://github.com/tytydraco/KTweak
 
 
 
@@ -351,6 +387,10 @@ vm.swappiness=100
 vm.vfs_cache_pressure=200
 
 vm.min_free_kbytes=32768
+
+vm.user_reserve_kbytes=32768 #default 31979
+
+vm.admin_reserve_kbytes=16384 #default 8192
 
 vm.dirty_background_bytes=16777216
 
