@@ -528,25 +528,25 @@ sleep 60
 
 
 
-cpufreq-set --cpu 0 -d 102000 -u 1000000 -g ondemand
+cpufreq-set --cpu 0 -d 51000 -u 1300000 -g ondemand
 
 
 
-cpufreq-set --cpu 1 -d 102000 -u 1000000 -g ondemand
+cpufreq-set --cpu 1 -d 51000 -u 1300000 -g ondemand
 
 
 
-cpufreq-set --cpu 2 -d 102000 -u 1000000 -g ondemand
+cpufreq-set --cpu 2 -d 51000 -u 1300000 -g ondemand
 
 
 
-cpufreq-set --cpu 3 -d 102000 -u 1000000 -g ondemand
+cpufreq-set --cpu 3 -d 51000 -u 1300000 -g ondemand
 
 
 
-# Reduce the boost ignore_nice_load to 0 (có hai giá trị 0 và 1)
+# Reduce the boost ignore_nice_load to 1 (có hai giá trị 0 và 1)
 
-echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
+echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
 
 
 
@@ -556,21 +556,21 @@ echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 
 
 
-# Reduce the boost powersave_bias to 300 (giá trị thay đổi từ 0-1000)
+# Reduce the boost powersave_bias to 0 (giá trị thay đổi từ 0-1000)
 
-echo 300 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
-
-
-
-# Reduce the boost sampling_down_factor to 2 (giá trị thay đổi từ 1-4)
-
-echo 2 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
 
 
 
-# Reduce the boost sampling_rate to 30000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_down_factor to 4 (giá trị thay đổi từ 1-4)
 
-echo 30000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+
+
+
+# Reduce the boost sampling_rate to 100000 (giá trị thay đổi từ 10000 - 300000)
+
+echo 100000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 
 
@@ -580,9 +580,9 @@ echo 20000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
-# Reduce the boost threshold to 90% (giá trị thay đổi từ 1-100)
+# Reduce the boost threshold to 95% (giá trị thay đổi từ 1-100)
 
-echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+echo 95 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
 
 
 
@@ -596,9 +596,9 @@ $ nano /etc/init.d/cpufrequtils
 
 GOVERNOR="ondemand"
 
-MAX_SPEED=1000000
+MAX_SPEED=1300000
 
-MIN_SPEED=102000
+MIN_SPEED=51000
 
 
 
