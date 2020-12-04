@@ -568,15 +568,15 @@ echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 
 
 
-# Reduce the boost sampling_rate to 100000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_rate to 120000 (giá trị thay đổi từ 10000 - 300000)
 
-echo 100000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+echo 120000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 
 
-# Reduce the boost sampling_rate_min to 20000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_rate_min to 30000 (giá trị thay đổi từ 10000 - 300000)
 
-echo 20000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
+echo 30000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
