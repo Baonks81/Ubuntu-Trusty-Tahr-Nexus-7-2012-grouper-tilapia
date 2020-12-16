@@ -428,13 +428,13 @@ kernel.sched_child_runs_first=1
 
 kernel.sched_tunable_scaling=0
 
-kernel.sched_latency_ns=1000000
+kernel.sched_latency_ns=500000
 
 kernel.sched_min_granularity_ns=62500
 
 kernel.sched_nr_migrate=2
 
-kernel.sched_wakeup_granularity_ns=500000
+kernel.sched_wakeup_granularity_ns=250000
 
 net.ipv4.tcp_ecn=1
 
@@ -568,9 +568,9 @@ echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 
 
 
-# Reduce the boost sampling_rate to 100000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_rate to 120000 (giá trị thay đổi từ 10000 - 300000)
 
-echo 100000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+echo 120000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 
 
@@ -580,9 +580,9 @@ echo 30000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
-# Reduce the boost threshold to 85% (giá trị thay đổi từ 1-100)
+# Reduce the boost threshold to 95% (giá trị thay đổi từ 1-100)
 
-echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+echo 95 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
 
 
 
