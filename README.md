@@ -324,15 +324,15 @@ $ sudo sysctl -w vm.swappiness=100
 
 
 
-$ sudo sysctl -w vm.vfs_cache_pressure=200
+$ sudo sysctl -w vm.vfs_cache_pressure=1
 
 
 
-$ sudo sysctl -w vm.dirty_background_ratio=3
+$ sudo sysctl -w vm.dirty_background_ratio=70
 
 
 
-$ sudo sysctl -w vm.dirty_ratio=30
+$ sudo sysctl -w vm.dirty_ratio=90
 
 
 
@@ -384,7 +384,7 @@ $ nano /etc/sysctl.conf
 
 vm.swappiness=100
 
-vm.vfs_cache_pressure=200
+vm.vfs_cache_pressure=1
 
 vm.min_free_kbytes=32768
 
@@ -396,9 +396,9 @@ vm.dirty_background_bytes=16777216
 
 vm.dirty_bytes=33554432
 
-vm.dirty_background_ratio=3
+vm.dirty_background_ratio=70
 
-vm.dirty_ratio=30
+vm.dirty_ratio=90
 
 vm.drop_caches=3
 
@@ -408,9 +408,9 @@ kernel.panic=5
 
 vm.overcommit_memory=0
 
-vm.dirty_writeback_centisecs=3000
+vm.dirty_writeback_centisecs=500
 
-vm.dirty_expire_centisecs=3000
+vm.dirty_expire_centisecs=500
 
 vm.lowmem_reserve_ratio=256 32 32
 
@@ -544,27 +544,27 @@ cpufreq-set --cpu 3 -d 51000 -u 1300000 -g ondemand
 
 
 
-# Reduce the boost ignore_nice_load to 1 (có hai giá trị 0 và 1)
+# Reduce the boost ignore_nice_load to 0 (có hai giá trị 0 và 1)
 
-echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
-
-
-
-# Reduce the boost io_is_busy to 1 ( có hai giá trị 0 và 1)
-
-echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
 
 
 
-# Reduce the boost powersave_bias to 0 (giá trị thay đổi từ 0-1000)
+# Reduce the boost io_is_busy to 0 ( có hai giá trị 0 và 1)
 
-echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
+echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 
 
 
-# Reduce the boost sampling_down_factor to 4 (giá trị thay đổi từ 1-4)
+# Reduce the boost powersave_bias to 300 (giá trị thay đổi từ 0-1000)
 
-echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+echo 300 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
+
+
+
+# Reduce the boost sampling_down_factor to q (giá trị thay đổi từ 1-4)
+
+echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 
 
 
@@ -574,9 +574,9 @@ echo 120000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 
 
-# Reduce the boost sampling_rate_min to 30000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_rate_min to 20000 (giá trị thay đổi từ 10000 - 300000)
 
-echo 30000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
+echo 20000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
