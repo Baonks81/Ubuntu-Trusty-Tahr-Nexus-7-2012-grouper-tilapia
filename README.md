@@ -382,67 +382,149 @@ $ nano /etc/sysctl.conf
 
 
 
+#
+# /etc/sysctl.conf - Configuration file for setting system variables
+# See /etc/sysctl.d/ for additional system variables.
+# See sysctl.conf (5) for information.
+#
+
+#kernel.domainname = example.com
+
+# Uncomment the following to stop low-level messages on console
+#kernel.printk = 3 4 1 3
+
+##############################################################3
+# Functions previously found in netbase
+#
+
+# Uncomment the next two lines to enable Spoof protection (reverse-path filter)
+# Turn on Source Address Verification in all interfaces to
+# prevent some spoofing attacks
+#net.ipv4.conf.default.rp_filter=1
+#net.ipv4.conf.all.rp_filter=1
+
+# Uncomment the next line to enable TCP/IP SYN cookies
+# See http://lwn.net/Articles/277146/
+# Note: This may impact IPv6 TCP sessions too
+#net.ipv4.tcp_syncookies=1
+
+# Uncomment the next line to enable packet forwarding for IPv4
+#net.ipv4.ip_forward=1
+
+# Uncomment the next line to enable packet forwarding for IPv6
+#  Enabling this option disables Stateless Address Autoconfiguration
+#  based on Router Advertisements for this host
+#net.ipv6.conf.all.forwarding=1
+
+
+###################################################################
+# Additional settings - these settings can improve the network
+# security of the host and prevent against some network attacks
+# including spoofing attacks and man in the middle attacks through
+# redirection. Some network environments, however, require that these
+# settings are disabled so review and enable them as needed.
+#
+# Do not accept ICMP redirects (prevent MITM attacks)
+#net.ipv4.conf.all.accept_redirects = 0
+#net.ipv6.conf.all.accept_redirects = 0
+# _or_
+# Accept ICMP redirects only for gateways listed in our default
+# gateway list (enabled by default)
+# net.ipv4.conf.all.secure_redirects = 1
+#
+# Do not send ICMP redirects (we are not a router)
+#net.ipv4.conf.all.send_redirects = 0
+#
+# Do not accept IP source route packets (we are not a router)
+#net.ipv4.conf.all.accept_source_route = 0
+#net.ipv6.conf.all.accept_source_route = 0
+#
+# Log Martian Packets
+#net.ipv4.conf.all.log_martians = 1
+#
 vm.swappiness=100
-
-vm.vfs_cache_pressure=1
-
-vm.min_free_kbytes=32768
-
-vm.user_reserve_kbytes=32768 #default 31979
-
-vm.admin_reserve_kbytes=16384 #default 8192
-
+vm.vfs_cache_pressure=200
+vm.min_free_kbytes=4096
+vm.mmap_min_addr=8192
 vm.dirty_background_bytes=16777216
-
 vm.dirty_bytes=33554432
-
-vm.dirty_background_ratio=70
-
-vm.dirty_ratio=90
-
+vm.dirty_background_ratio=1
+vm.dirty_ratio=2
 vm.drop_caches=3
-
 vm.panic_on_oom=1
-
-kernel.panic=5
-
+kernel.panic=1
 vm.overcommit_memory=0
-
-vm.dirty_writeback_centisecs=500
-
-vm.dirty_expire_centisecs=500
-
+vm.dirty_writeback_centisecs=2000
+vm.dirty_expire_centisecs=1000
 vm.lowmem_reserve_ratio=256 32 32
-
 vm.oom_kill_allocating_task=1
 
 vm.oom_dump_tasks=0
+#1
 
 vm.page-cluster=0
+#3
 
 vm.stat_interval=10
+#1
 
-
-
-kernel.sched_child_runs_first=1
+kernel.threads-max=5000
+#15502
+kernel.shmmax=268435456
+#33554432
+kernel.msgmni=2048
+#721
+kernel.msgmax=64000
+#8192
+kernel.sem=500 521000 64 2048
+#250 32000 32 128
+kernel.sched_child_runs_first=0
+#0
 
 kernel.sched_tunable_scaling=0
+#1
 
-kernel.sched_latency_ns=500000
+kernel.sched_latency_ns=18000000
+#18000000
 
-kernel.sched_min_granularity_ns=62500
+kernel.sched_min_granularity_ns=1500000
+#2250000
 
-kernel.sched_nr_migrate=2
+kernel.sched_migration_cost=5000000
+#500000
 
-kernel.sched_wakeup_granularity_ns=250000
+kernel.sched_nr_migrate=4
+#32
+
+kernel.sched_wakeup_granularity_ns=3000000
+#3000000
 
 net.ipv4.tcp_ecn=1
+#2
 
 net.ipv4.tcp_syncookies=0
+#1
 
 net.ipv4.tcp_timestamps=0
+#1
 
+net.ipv4.tcp_tw_recycle=1
+#0
 
+net.ipv4.tcp_tw_reuse=1
+#0
+
+net.ipv4.tcp_wmem=6144 87380 524288
+#4096 16384 389760
+
+net.ipv4.tcp_rmem=6144 87380 524288
+#4096 87380 389760
+
+net.core.wmem_max=524288
+#131071
+
+net.core.rmem_max=524288
+#131071
 
 fs.file-max=99190
 
@@ -550,27 +632,27 @@ echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/ignore_nice_load
 
 
 
-# Reduce the boost io_is_busy to 0 ( có hai giá trị 0 và 1)
+# Reduce the boost io_is_busy to 1 ( có hai giá trị 0 và 1)
 
-echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
-
-
-
-# Reduce the boost powersave_bias to 350 (giá trị thay đổi từ 0-1000)
-
-echo 350 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
+echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 
 
 
-# Reduce the boost sampling_down_factor to q (giá trị thay đổi từ 1-4)
+# Reduce the boost powersave_bias to 340 (giá trị thay đổi từ 0-1000)
 
-echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+echo 340 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
 
 
 
-# Reduce the boost sampling_rate to 120000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_down_factor to 10 (giá trị thay đổi từ 1-4)
 
-echo 120000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+echo 10 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+
+
+
+# Reduce the boost sampling_rate to 40000 (giá trị thay đổi từ 10000 - 300000)
+
+echo 40000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 
 
@@ -580,10 +662,64 @@ echo 20000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
-# Reduce the boost threshold to 95% (giá trị thay đổi từ 1-100)
+# Reduce the boost threshold to 98% (giá trị thay đổi từ 1-100)
 
-echo 95 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+echo 98 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
 
+
+for queue in /sys/block/*/queue
+
+do
+
+# Choose the first governor available
+
+avail_scheds="$(cat "$queue/scheduler")"
+
+for sched in cfq noop kyber bfq mq-deadline none
+
+do
+
+ if [[ "$avail_scheds" == *"$sched"* ]]
+
+ then
+
+  echo "$sched" > "$queue/scheduler"
+
+  break
+
+ fi
+
+done
+
+
+
+# Do not use I/O as a source of randomness
+
+echo 0 > "$queue/add_random"
+
+
+
+# Disable I/O statistics accounting
+
+echo 0 > "$queue/iostats"
+
+
+
+# Reduce heuristic read-ahead in exchange for I/O latency
+
+echo 32 > "$queue/read_ahead_kb"
+
+
+
+# Reduce the maximum number of I/O requests in exchange for latency
+
+echo 32 > "$queue/nr_requests"
+
+
+
+echo 128 > "$queue/max_sectors_kb"
+
+done
 
 
 $ nano /etc/init.d/cpufrequtils
