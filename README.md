@@ -396,6 +396,7 @@ vm.dirty_writeback_centisecs=2000
 vm.dirty_expire_centisecs=1000
 vm.lowmem_reserve_ratio=256 32 32
 vm.oom_kill_allocating_task=1
+vm.highmem_is_dirtyable=1
 
 vm.oom_dump_tasks=0
 #1
@@ -632,15 +633,15 @@ echo 0 > "$queue/iostats"
 
 # Reduce heuristic read-ahead in exchange for I/O latency
 
-echo 32 > "$queue/read_ahead_kb"
+echo 0 > "$queue/read_ahead_kb"
 
 
 
 # Reduce the maximum number of I/O requests in exchange for latency
 
-echo 32 > "$queue/nr_requests"
+echo 512 > "$queue/nr_requests"
 
-
+echo 2 > "$queue/rq_affinity"
 
 echo 128 > "$queue/max_sectors_kb"
 
