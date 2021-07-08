@@ -380,8 +380,8 @@ $ sudo sysctl -w vm.oom_kill_allocating_task=1
 
 $ nano /etc/sysctl.conf
 
-vm.swappiness=100
-vm.vfs_cache_pressure=200
+vm.swappiness=20
+vm.vfs_cache_pressure=80
 vm.min_free_kbytes=4096
 vm.mmap_min_addr=8192
 vm.dirty_background_bytes=16777216
@@ -588,9 +588,9 @@ echo 20000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
-# Reduce the boost threshold to 85% (giá trị thay đổi từ 1-100)
+# Reduce the boost threshold to 75% (giá trị thay đổi từ 1-100)
 
-echo 85 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+echo 75 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
 
 
 for queue in /sys/block/*/queue
