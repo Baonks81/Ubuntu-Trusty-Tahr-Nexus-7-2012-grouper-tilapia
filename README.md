@@ -392,8 +392,8 @@ vm.drop_caches=3
 vm.panic_on_oom=1
 kernel.panic=1
 vm.overcommit_memory=0
-vm.dirty_writeback_centisecs=3000
-vm.dirty_expire_centisecs=3000
+vm.dirty_writeback_centisecs=2000
+vm.dirty_expire_centisecs=1000
 vm.lowmem_reserve_ratio=256 32 32
 vm.oom_kill_allocating_task=1
 vm.highmem_is_dirtyable=1
@@ -423,10 +423,10 @@ kernel.sched_child_runs_first=0
 kernel.sched_tunable_scaling=0
 #1
 
-kernel.sched_latency_ns=1000000
+kernel.sched_latency_ns=18000000
 #18000000
 
-kernel.sched_min_granularity_ns=100000
+kernel.sched_min_granularity_ns=1500000
 #2250000
 
 kernel.sched_migration_cost=5000000
@@ -435,7 +435,7 @@ kernel.sched_migration_cost=5000000
 kernel.sched_nr_migrate=4
 #32
 
-kernel.sched_wakeup_granularity_ns=500000
+kernel.sched_wakeup_granularity_ns=3000000
 #3000000
 
 net.ipv4.tcp_ecn=1
@@ -570,15 +570,15 @@ echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/powersave_bias
 
 
 
-# Reduce the boost sampling_down_factor to 2 (giá trị thay đổi từ 1-4)
+# Reduce the boost sampling_down_factor to 10 (giá trị thay đổi từ 1-4)
 
-echo 2 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+echo 10 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 
 
 
-# Reduce the boost sampling_rate to 30000 (giá trị thay đổi từ 10000 - 300000)
+# Reduce the boost sampling_rate to 40000 (giá trị thay đổi từ 10000 - 300000)
 
-echo 30000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
+echo 40000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
 
 
 
@@ -588,9 +588,9 @@ echo 20000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate_min
 
 
 
-# Reduce the boost threshold to 75% (giá trị thay đổi từ 1-100)
+# Reduce the boost threshold to 95% (giá trị thay đổi từ 1-100)
 
-echo 75 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
+echo 95 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
 
 
 for queue in /sys/block/*/queue
