@@ -684,7 +684,7 @@ Turn on automatic CPU hotplugging:
 
 
 
-# sudo echo 1 > /sys/module/cpu_tegra3/parameters/auto_hotplug
+# sudo echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
 
 
 
