@@ -686,7 +686,9 @@ Turn on automatic CPU hotplugging:
 
 # sudo echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
 
-
+$ sudo echo 1 > /sys/devices/system/cpu/cpu2/online
+#default 0
+$ sudo echo 1 > /sys/devices/system/cpu/cpu3/online
 
 7. Thiết lập sound card bằng alsamixer, dùng pavucontrol(pulse audio) để khuếch đại âm thanh và cài xfce4-mixer để quản lý alsa sound bằng GUI
 
