@@ -25,6 +25,19 @@ err_exit () {
 	exit 128
 }
 
+echo Y > /sys/module/cpu_tegra3/parameters/no_lp
+
+echo 25 > /sys/module/cpu_tegra3/parameters/balance_level
+
+echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
+echo 1 > /sys/kernel/cluster/immediate
+echo 1 > /sys/kernel/cluster/force
+#echo "G" > /sys/kernel/cluster/active
+
+echo 1 > /sys/devices/system/cpu/cpu1/online
+echo 1 > /sys/devices/system/cpu/cpu2/online
+echo 1 > /sys/devices/system/cpu/cpu3/online
+
 if [ $# -ne 1 ]; then
 	# If temperature wasn't given, then print a message and exit.
 	echo "Please supply a maximum desired temperature in Celsius." 1>&2
@@ -39,7 +52,7 @@ fi
 ### START Initialize Global variables.
 
 # The frequency will increase when low temperature is reached.
-LOW_TEMP=$((MAX_TEMP - 5))
+LOW_TEMP=$((MAX_TEMP - 3))
 
 CORES=$(nproc) # Get number of CPU cores.
 echo -e "Number of CPU cores detected: $CORES\n"
