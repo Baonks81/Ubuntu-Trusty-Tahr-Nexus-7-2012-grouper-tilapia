@@ -686,9 +686,21 @@ Turn on automatic CPU hotplugging:
 
 # sudo echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
 
-$ sudo echo 1 > /sys/devices/system/cpu/cpu2/online
-#default 0
-$ sudo echo 1 > /sys/devices/system/cpu/cpu3/online
+$ sudo echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
+
+echo 25 > /sys/module/cpu_tegra3/parameters/balance_level
+
+echo 60000 > /sys/kernel/debug/tegra_thermal/shutdown_temp_tj
+
+echo 58000 > /sys/kernel/debug/tegra_thermal/throttle_temp_tj
+
+echo 1 > /sys/kernel/cluster/immediate
+echo 1 > /sys/kernel/cluster/force
+#echo "G" > /sys/kernel/cluster/active
+
+echo 1 > /sys/devices/system/cpu/cpu1/online
+echo 1 > /sys/devices/system/cpu/cpu2/online
+echo 1 > /sys/devices/system/cpu/cpu3/online
 
 7. Thiết lập sound card bằng alsamixer, dùng pavucontrol(pulse audio) để khuếch đại âm thanh và cài xfce4-mixer để quản lý alsa sound bằng GUI
 
@@ -1264,7 +1276,13 @@ $ sudo mkdir /usr/share/icons/default
 
 $ sudo nano /usr/share/icons/default/index.theme
 
+https://github.com/Sepero/temp-throttle/tree/4e6fa06ea036129c4a815fc5d4494556578624e1
 
+TEMPERATURE_PATH="/sys/kernel/debug/tegra_thermal/temp_tj
+
+Low_temp=max_temp -3
+
+$ sh temp_throttle.sh 50
 
 [Icon Theme]
 
