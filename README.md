@@ -676,27 +676,23 @@ Turn off low-power core migration:
 
 
 
-# sudo echo Y > /sys/module/cpu_tegra3/parameters/no_lp
+#sudo echo Y > /sys/module/cpu_tegra3/parameters/no_lp
 
 
 
 Turn on automatic CPU hotplugging:
 
 
+echo 37 > /sys/module/cpu_tegra3/parameters/balance_level
+echo 475000 > /sys/module/cpu_tegra3/parameters/idle_bottom_freq
+echo 640000 > /sys/module/cpu_tegra3/parameters/idle_top_freq
 
-# sudo echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
+echo 65000 > /sys/kernel/debug/tegra_thermal/shutdown_temp_tj
+echo 64000 > /sys/kernel/debug/tegra_thermal/throttle_temp_tj
 
-$ sudo echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
-
-echo 25 > /sys/module/cpu_tegra3/parameters/balance_level
-
-echo 60000 > /sys/kernel/debug/tegra_thermal/shutdown_temp_tj
-
-echo 58000 > /sys/kernel/debug/tegra_thermal/throttle_temp_tj
-
+echo 0 > /sys/module/cpu_tegra3/parameters/auto_hotplug
 echo 1 > /sys/kernel/cluster/immediate
 echo 1 > /sys/kernel/cluster/force
-#echo "G" > /sys/kernel/cluster/active
 
 echo 1 > /sys/devices/system/cpu/cpu1/online
 echo 1 > /sys/devices/system/cpu/cpu2/online
@@ -1280,9 +1276,11 @@ https://github.com/Sepero/temp-throttle/tree/4e6fa06ea036129c4a815fc5d4494556578
 
 TEMPERATURE_PATH="/sys/kernel/debug/tegra_thermal/temp_tj
 
-Low_temp=max_temp -3
+step freq throttle 400000
 
-$ sh temp_throttle.sh 50
+Low_temp=max_temp - 1
+
+$ sh temp_throttle.sh 59
 
 [Icon Theme]
 
