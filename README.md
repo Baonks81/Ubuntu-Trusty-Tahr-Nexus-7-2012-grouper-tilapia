@@ -1280,6 +1280,8 @@ step freq throttle 400000
 
 Low_temp=max_temp - 1
 
+sleep 1
+
 $ sh temp_throttle.sh 59
 
 https://www.mediafire.com/file/op6ehqt2fzonsuy/
